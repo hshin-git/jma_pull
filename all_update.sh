@@ -1,25 +1,19 @@
 #!/bin/bash
+echo "##################################################"
 echo "ENTER:" $(date)
+
 #DEBUG=echo
 #PYTHON=/home/shin/anaconda3/bin/python
 #PYTHON=/home/ubuntu/anaconda3/bin/python
 
-JMA_ROOT=~/Documents/python/jma_pull
-#JMA_ROOT=/home/ubuntu/jma_pull
-
-PUB_PATH=${JMA_ROOT}/pub
-
-PDF_PATH=${JMA_ROOT}/pdf
-PNG_PATH=${JMA_ROOT}/png
-TXT_PATH=${JMA_ROOT}/txt
-XML_PATH=${JMA_ROOT}/xml
+JMA_PATH=~/Documents/python/jma_pull
+#JMA_PATH=/home/ubuntu/jma_pull
+for x in pdf png latest; do
+  mkdir -p ${JMA_PATH}/$x
+done
 
 PNG_OPTS="-singlefile -scale-to 1240"
 #PNG_OPTS="-singlefile"
-
-for d in $PDF_PATH $PNG_PATH $TXT_PATH $XML_PATH; do
-  mkdir -p $d
-done
 
 
 echo "##################################################"
@@ -52,6 +46,10 @@ echo "UTC_12" $UTC_DATE_12 $UTC_HOUR_12
 URL_ASAS=https://www.jma.go.jp/jp/g3/images/asia/pdf/asas.pdf
 URL_ASAS_COLOR=https://www.data.jma.go.jp/fcd/yoho/data/wxchart/quick/ASAS_COLOR.pdf
 
+## 予想天気図（UTC=00,12）
+URL_FSAS24=https://www.jma.go.jp/jp/g3/images/24h/pdf/fsas24.pdf
+URL_FSAS48=https://www.jma.go.jp/jp/g3/images/48h/pdf/fsas48.pdf
+
 ## 高層天気図（UTC=00,12）
 URL_AUPA20=https://www.jma.go.jp/jp/metcht/pdf/kosou/aupa20_${UTC_HOUR_12}.pdf
 URL_AUPN30=https://www.jma.go.jp/jp/metcht/pdf/kosou/aupn30_${UTC_HOUR_12}.pdf
@@ -70,8 +68,8 @@ URL_AWJP=https://www.data.jma.go.jp/gmd/waveinf/data/chart/awjp${UTC_DATE_12:2}.
 URL_AWJP_COL=https://www.data.jma.go.jp/gmd/waveinf/data/chart/awjp${UTC_DATE_12:2}_col.pdf
 
 ## 波浪予想図（UTC=00,12）
-URL_FWJP=https://www.data.jma.go.jp/gmd/waveinf/data/chart/fwjp${UTC_DATE_12}.pdf
-URL_FWJP_COL=https://www.data.jma.go.jp/gmd/waveinf/data/chart/fwjp${UTC_DATE_12}_col.pdf
+URL_FWJP=https://www.data.jma.go.jp/gmd/waveinf/data/chart/fwjp${UTC_DATE_12:2}.pdf
+URL_FWJP_COL=https://www.data.jma.go.jp/gmd/waveinf/data/chart/fwjp${UTC_DATE_12:2}_col.pdf
 
 ## 短期予報解説資料（JST=05,17）
 URL_TANKI=https://www.data.jma.go.jp/fcd/yoho/data/jishin/kaisetsu_tanki_latest.pdf
@@ -98,56 +96,51 @@ URL_EQVOL=http://www.data.jma.go.jp/developer/xml/feed/eqvol.xml
 
 echo "##################################################"
 ##### 気象庁データの取得
-## 実況天気図（UTC=00,06,12,18）
-for url in $URL_ASAS_COLOR; do
+## PDFファイル（実況図:履歴の保存）
+for url in $URL_ASAS_COLOR $URL_AWJP_COL $URL_AUPQ78 $URL_AUPQ35 $URL_TANKI $URL_SHUKAN; do
+#for url in $URL_ASAS_COLOR; do
   base=$(basename $url)
-  echo "GET" $base
-  dst=${PDF_PATH}/$base
-  pdf=${PDF_PATH}/${base%.*}_${UTC_DATE_06}.pdf
-  png=${PNG_PATH}/${base%.*}_${UTC_DATE_06}
-  $DEBUG wget $url -P ${PDF_PATH} -O $dst
-  if [ -s $dst ]; then
-    $DEBUG mv $dst $pdf
-    $DEBUG pdftoppm $pdf -png $png ${PNG_OPTS}
-    $DEBUG ln -fs ${png}.png ${PUB_PATH}/asas.png
+  base=${base%.*}
+  base=${base/${UTC_DATE_12:2}/}
+  base=${base%_*}
+  ext=${url##*.}
+  echo "GET" $base $ext
+  src=${JMA_PATH}/pdf/${UTC_DATE_12}_${base}.pdf
+  png=${JMA_PATH}/png/${UTC_DATE_12}_${base}
+  dst=${JMA_PATH}/latest/${base}.png
+  $DEBUG wget $url -O $src
+  if [ -s $src ]; then
+    $DEBUG pdftoppm $src -png $png -singlefile ${PNG_OPTS}
+    $DEBUG cp ${png}.png $dst
   fi
 done
 
-## 波浪解析図（UTC=00,12）
-for url in $URL_AWJP_COL; do
+## PDFファイル（予想図：上書き保存）
+for url in $URL_FSAS24 $URL_FSAS48 $URL_FWJP_COL; do
   base=$(basename $url)
-  echo "GET" $base
-  dst=${PDF_PATH}/$base
-  pdf=${PDF_PATH}/${base%.*}.pdf
-  png=${PNG_PATH}/${base%.*}
-  $DEBUG wget $url -P ${PDF_PATH} -O $dst
-  if [ -s $dst ]; then
-    #$DEBUG mv $dst $pdf
-    $DEBUG pdftoppm $pdf -png $png ${PNG_OPTS}
-    $DEBUG ln -fs ${png}.png ${PUB_PATH}/awjp.png
+  base=${base%.*}
+  base=${base/${UTC_DATE_12:2}/}
+  base=${base%_*}
+  ext=${url##*.}
+  echo "GET" $base $ext
+  src=${JMA_PATH}/latest/${base}.pdf
+  png=${JMA_PATH}/latest/${base}
+  $DEBUG wget $url -O $src
+  if [ -s $src ]; then
+    $DEBUG pdftoppm $src -png $png -singlefile ${PNG_OPTS}
   fi
 done
 
-## 気象通報（JST=18）
-for url in $URL_JIKKYO $URL_TSUHO; do
+## TXT/XMLファイル（その他：上書き保存）
+for url in $URL_JIKKYO $URL_TSUHO $URL_REGULAR $URL_EXTRA $URL_EQVOL; do
+  ext=${url##*.}
   base=$(basename $url)
-  echo "GET" $base
-  txt=${TXT_PATH}/${base%.*}_${UTC_DATE_00}.txt
-  $DEBUG wget $url -P ${TXT_PATH}
-  $DEBUG mv ${TXT_PATH}/$base $txt
-  $DEBUG ln -fs $txt ${PUB_PATH}/$base
+  base=${base%.*}
+  echo "GET" $base $ext
+  src=${JMA_PATH}/latest/${base}.${ext}
+  $DEBUG wget $url -O $src
 done
 
-exit 0
-## 防災情報（1h毎、随時）
-for url in $URL_REGULAR $URL_EXTRA $URL_EQVOL; do
-  base=$(basename $url)
-  echo "GET" $base
-  xml=${XML_PATH}/${base%.*}_${JST_DATE}.xml
-  $DEBUG wget $url -P ${XML_PATH}
-  $DEBUG mv ${XML_PATH}/$base $xml
-  $DEBUG ln -fs $xml ${PUB_PATH}/$base
-done
 
 
 echo "##################################################"

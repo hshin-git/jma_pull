@@ -2,19 +2,44 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset="Shift_JIS">
 <title>JMA Pull</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+
+<link rel="stylesheet" type="text/css" href="./common.css">
+<link rel="icon" type="image/png" href="./favicon/icon-192x192.png">
+<link rel="apple-touch-icon" type="image/png" href="./favicon/apple-touch-icon-180x180.png">
+
+<script type="text/javascript">
+////////// SCRIPT BEGIN //////////
+const TODAY = new Date();
+const VERSION = TODAY.getFullYear() +"."+ (TODAY.getMonth()+1) +"."+ TODAY.getDate() +"."+ TODAY.getHours();
+function tabClick(url) { const e = document.getElementById("tabNode"); if (e) { e.src = url; }; };
+////////// SCRIPT END //////////
+</script>
 </head>
 
-<style>
-</style>
-
 <body>
-<img src="./asas.png" width=100%><hr>
-<!-- Wave Chart<img src="./awjp.png" widht=100%><hr> -->
-<object data="./jikkyo12.txt" type="text/plain" width=100% height=400px></object><hr>
-<object data="./tsuho12.txt" type="text/plain" width=100% height=400px></object>
+<div id="tabArea">
+<button onclick="tabClick('./latest/ASAS.png')">実況天気図</button>
+<button onclick="tabClick('./latest/fsas24.png')">予想天気図24h</button>
+<button onclick="tabClick('./latest/fsas48.png')">予想天気図48h</button>
+<button onclick="tabClick('./latest/aupq78.png')">高層天気図7-8</button>
+<button onclick="tabClick('./latest/aupq35.png')">高層天気図3-5</button>
+<!-- <button onclick="tabClick('./latest/axfe578.png')">高層天気図5-7-8</button> -->
+<button onclick="tabClick('./latest/awjp.png')">波浪解析図</button>
+<button onclick="tabClick('./latest/fwjp.png')">波浪予想図24h</button>
+<!-- <button onclick="tabClick('./latest/auxn50.png')">北半球解析図5</button> -->
+<button onclick="tabClick('./latest/kaisetsu_tanki.png')">短期予報解説</button>
+<button onclick="tabClick('./latest/kaisetsu_shukan.png')">週間予報解説</button>
+</div>
 
+<div class="tabBody">
+<img id="tabNode" src="./latest/ASAS.png" width=100%>
+</div>
 </body>
 
 </html>

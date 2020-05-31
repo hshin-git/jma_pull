@@ -1,0 +1,30 @@
+/***** common vars *****/
+:root {
+ --text-bg: white;
+ --text-fg: black;
+ --button-bg: royalBlue;
+ --button-fg: ivory;
+ --link-fg: blue;
+ --line-fg: silver;
+}
+@media (prefers-color-scheme: dark) {
+ :root {
+  --text-bg: gray;
+  --text-fg: ivory;
+  --button-bg: dimGray;
+  --button-fg: ivory;
+  --link-fg: paleTurquoise;
+  --line-fg: silver;
+ }
+}
+
+
+/***** index.html *****/
+body { text-align:center; height:100%; background:var(--text-bg); color:var(--text-fg); }
+h1 { font-size:medium; }
+hr { color:var(--button-bg); }
+button {
+ border-style:none; font-weight:bold; width:120px; border-radius:8px;
+ background-color:var(--button-bg); color:var(--button-fg);
+}
+
