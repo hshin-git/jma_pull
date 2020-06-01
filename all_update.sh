@@ -31,7 +31,7 @@ echo "UTC" $UTC_DATE $UTC_HOUR
 UTC_HOUR_06=$(printf "%02d" $(expr $(expr $UTC_HOUR / 6) "*" 6))
 UTC_HOUR_12=$(printf "%02d" $(expr $(expr $UTC_HOUR / 12) "*" 12))
 
-UTC_DATE_00=${UTC_DATE:0:8}
+UTC_DATE_00=${UTC_DATE:0:8}00
 UTC_DATE_06=${UTC_DATE:0:8}${UTC_HOUR_06}
 UTC_DATE_12=${UTC_DATE:0:8}${UTC_HOUR_12}
 
@@ -217,7 +217,7 @@ fi
 if [ $JST_HOUR = "15" ]; then
   ## PNGファイル（長期予報）
   for url in $PNG_2WEEK $PNG_1MONTH $PNG_3MONTH; do
-    GET_URL $url $UTC_DATE_12
+    GET_URL $url
   done
 fi
 ##### 24h毎 #####

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
 <title>JMA Pull</title>
@@ -16,8 +16,8 @@
 <script type="text/javascript">
 ////////// SCRIPT BEGIN //////////
 const TODAY = new Date();
-const VERSION = TODAY.getFullYear() +"."+ (TODAY.getMonth()+1) +"."+ TODAY.getDate() +"."+ TODAY.getHours();
-function tabClick(url) { const e = document.getElementById("tabNode"); if (e) { e.src = url; }; };
+const VERSION = TODAY.getFullYear() + (TODAY.getMonth()+1) + TODAY.getDate() + TODAY.getHours();
+function tabClick(url) { const e = document.getElementById("tabNode"); if (e) { e.src = url +"?="+ VERSION; }; };
 ////////// SCRIPT END //////////
 </script>
 </head>
@@ -39,10 +39,12 @@ function tabClick(url) { const e = document.getElementById("tabNode"); if (e) { 
 <button onclick="tabClick('./latest/thunder000.png')">雷雲（全国）</button>
 <br>
 
+<!--
 <button onclick="tabClick('./latest/map.png')">気温（2週）</button>
 <button onclick="tabClick('./latest/temp-00.png')">気温（1月）</button>
 <button onclick="tabClick('./latest/temp-10.png')">気温（3月）</button>
 <br>
+-->
 
 <button onclick="tabClick('./latest/awjp.png')">波浪実況図</button>
 <button onclick="tabClick('./latest/fwjp.png')">波浪予想図</button>
@@ -57,6 +59,7 @@ function tabClick(url) { const e = document.getElementById("tabNode"); if (e) { 
 <img id="tabNode" src="./latest/ASAS.png" width=100%>
 </div>
 </body>
+<hr>
 
 </html>
 
