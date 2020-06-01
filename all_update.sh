@@ -198,6 +198,8 @@ if [ $JST_HOUR = "00" -o $JST_HOUR = "12" ]; then
   for url in $PDF_ASAS_COLOR $PDF_AWJP_COL; do
     GET_URL $url $UTC_DATE_12
   done
+fi
+if [ $JST_HOUR = "06" -o $JST_HOUR = "18" ]; then
   ## PDFファイル（予想天気図）
   for url in $PDF_FSAS24 $PDF_FSAS48 $PDF_FWJP_COL; do
     GET_URL $url
@@ -218,6 +220,12 @@ if [ $JST_HOUR = "15" ]; then
   ## PNGファイル（長期予報）
   for url in $PNG_2WEEK $PNG_1MONTH $PNG_3MONTH; do
     GET_URL $url
+  done
+fi
+if [ $JST_HOUR = "09" -o $JST_HOUR = "21" ]; then
+  ## PNG/JPGファイル（衛星画像）
+  for url in $PNG_GMS_IR $PNG_GMS_VS $PNG_GMS_WV; do
+    GET_URL $url $UTC_DATE_12
   done
 fi
 ##### 24h毎 #####
