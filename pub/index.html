@@ -24,18 +24,34 @@ function tabClick(url) { const e = document.getElementById("tabNode"); if (e) { 
 
 <body>
 <div id="tabArea">
-<button onclick="tabClick('./latest/ASAS.png')">実況天気図</button>
-<button onclick="tabClick('./latest/fsas24.png')">予想天気図24h</button>
-<button onclick="tabClick('./latest/fsas48.png')">予想天気図48h</button>
-<button onclick="tabClick('./latest/aupq78.png')">高層天気図7-8</button>
-<button onclick="tabClick('./latest/aupq35.png')">高層天気図3-5</button>
-<!-- <button onclick="tabClick('./latest/axfe578.png')">高層天気図5-7-8</button> -->
-<button onclick="tabClick('./latest/awjp.png')">波浪解析図</button>
-<button onclick="tabClick('./latest/fwjp.png')">波浪予想図24h</button>
-<!-- <button onclick="tabClick('./latest/auxn50.png')">北半球解析図5</button> -->
-<button onclick="tabClick('./latest/kaisetsu_tanki.png')">短期予報解説</button>
-<button onclick="tabClick('./latest/kaisetsu_shukan.png')">週間予報解説</button>
+<button onclick="tabClick('./latest/ASAS.png')">実況図</button>
+<button onclick="tabClick('./latest/fsas24.png')">24h予想図</button>
+<button onclick="tabClick('./latest/fsas48.png')">48h予想図</button>
+<br>
+
+<button onclick="tabClick('./latest/infrared1.png')">赤外画像</button>
+<button onclick="tabClick('./latest/visible1.png')">可視画像</button>
+<button onclick="tabClick('./latest/watervapor1.png')">水蒸気画像</button>
+<br>
+
+<button onclick="tabClick('./latest/radar206.png')">雨雲（関東）</button>
+<button onclick="tabClick('./latest/radar000.png')">雨雲（全国）</button>
+<button onclick="tabClick('./latest/thunder000.png')">雷雲（全国）</button>
+<br>
+
+<button onclick="tabClick('./latest/map.png')">気温（2週）</button>
+<button onclick="tabClick('./latest/temp-00.png')">気温（1月）</button>
+<button onclick="tabClick('./latest/temp-10.png')">気温（3月）</button>
+<br>
+
+<button onclick="tabClick('./latest/awjp.png')">波浪実況図</button>
+<button onclick="tabClick('./latest/fwjp.png')">波浪予想図</button>
+<br>
+
+<button onclick="tabClick('./latest/kaisetsu_tanki.png')">短期予報</button>
+<button onclick="tabClick('./latest/kaisetsu_shukan.png')">週間予報</button>
 </div>
+<hr>
 
 <div class="tabBody">
 <img id="tabNode" src="./latest/ASAS.png" width=100%>

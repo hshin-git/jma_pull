@@ -7,7 +7,7 @@ echo "ENTER:" $(date)
 
 JMA_PATH=~/Documents/python/jma_pull
 #JMA_PATH=/home/ubuntu/jma_pull
-for x in pdf png latest; do
+for x in pdf png txt xml latest; do
   $DEBUG rm ${JMA_PATH}/$x/*
 done
 
