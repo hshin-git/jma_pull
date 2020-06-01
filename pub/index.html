@@ -15,9 +15,14 @@
 
 <script type="text/javascript">
 ////////// SCRIPT BEGIN //////////
+const D2 = function (n) { return ("0"+n).slice(-2); };
 const TODAY = new Date();
-const VERSION = TODAY.getFullYear() + (TODAY.getMonth()+1) + TODAY.getDate() + TODAY.getHours();
-function tabClick(url) { const e = document.getElementById("tabNode"); if (e) { e.src = url +"?="+ VERSION; }; };
+const VERSION = TODAY.getFullYear() + D2(TODAY.getMonth()+1) + D2(TODAY.getDate()) + D2(TODAY.getHours()) + D2(TODAY.getMinutes());
+function tabClick(url) { 
+  const e = document.getElementById("tabNode");
+  if (e) { e.src = url +"?"+ VERSION; };
+  //alert(VERSION);
+};
 ////////// SCRIPT END //////////
 </script>
 </head>
@@ -56,7 +61,7 @@ function tabClick(url) { const e = document.getElementById("tabNode"); if (e) { 
 <hr>
 
 <div class="tabBody">
-<img id="tabNode" src="./latest/ASAS.png" width=100%>
+<img id="tabNode" src="./latest/ASAS.png" width=100% />
 </div>
 </body>
 <hr>
