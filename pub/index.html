@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-<title>JMA Dash</title>
+<title>JMA Watch</title>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -17,7 +17,7 @@
 ////////// SCRIPT BEGIN //////////
 const D2 = function (n) { return ("0"+n).slice(-2); };
 const TODAY = new Date();
-const VERSION = TODAY.getFullYear() + D2(TODAY.getMonth()+1) + D2(TODAY.getDate()) + D2(TODAY.getHours()) + D2(TODAY.getMinutes());
+const VERSION = TODAY.getFullYear() + D2(TODAY.getMonth()+1) + D2(TODAY.getDate()) + D2(TODAY.getHours());
 function tabClick(url) { 
   const e = document.getElementById("tabNode");
   if (e) { e.src = url +"?"+ VERSION; };
