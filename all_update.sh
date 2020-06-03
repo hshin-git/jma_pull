@@ -193,7 +193,7 @@ done
 
 echo "##################################################"
 ##### 12h毎 #####
-if [ $JST_HOUR = "00" -o $JST_HOUR = "12" ]; then
+if [ $JST_HOUR = "02" -o $JST_HOUR = "14" ]; then
   ## PDFファイル（実況天気図）
   for url in $PDF_ASAS_COLOR $PDF_AWJP_COL; do
     GET_URL $url $UTC_DATE_12
