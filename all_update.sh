@@ -3,11 +3,12 @@ echo "##################################################"
 echo "ENTER:" $(date)
 
 #DEBUG=echo
-#PYTHON=/home/shin/anaconda3/bin/python
-#PYTHON=/home/ubuntu/anaconda3/bin/python
 
+PYTHON=/home/shin/anaconda3/bin/python
 JMA_PATH=~/Documents/python/jma_pull
+#PYTHON=/home/ubuntu/anaconda3/bin/python
 #JMA_PATH=/home/ubuntu/jma_pull
+
 for x in pdf png txt xml latest; do
   mkdir -p ${JMA_PATH}/$x
 done
@@ -189,6 +190,7 @@ for url in $PNG_RADAR_KANTO $PNG_RADAR_JAPAN $PNG_THUNDER_JAPAN $PNG_GMS_IR $PNG
   GET_URL $url
 done
 ##### 1h毎 #####
+$DEBUG $PYTHON 0_jma_to_news.py
 
 
 echo "##################################################"
