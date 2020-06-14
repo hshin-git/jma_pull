@@ -29,9 +29,10 @@ function tabClick(url) {
 
 <body>
 <div id="tabArea">
-<button onclick="tabClick('./latest/ASAS.png')">実況図</button>
-<button onclick="tabClick('./latest/fsas24.png')">24h予想図</button>
-<button onclick="tabClick('./latest/fsas48.png')">48h予想図</button>
+
+<button onclick="tabClick('./latest/radar206.png')">雨雲（関東）</button>
+<button onclick="tabClick('./latest/radar000.png')">雨雲（全国）</button>
+<button onclick="tabClick('./latest/thunder000.png')">雷雲（全国）</button>
 <br>
 
 <button onclick="tabClick('./latest/infrared1.png')">赤外画像</button>
@@ -39,9 +40,9 @@ function tabClick(url) {
 <button onclick="tabClick('./latest/watervapor1.png')">水蒸気画像</button>
 <br>
 
-<button onclick="tabClick('./latest/radar206.png')">雨雲（関東）</button>
-<button onclick="tabClick('./latest/radar000.png')">雨雲（全国）</button>
-<button onclick="tabClick('./latest/thunder000.png')">雷雲（全国）</button>
+<button onclick="tabClick('./latest/ASAS.png')">実況図</button>
+<button onclick="tabClick('./latest/fsas24.png')">24h予想図</button>
+<button onclick="tabClick('./latest/fsas48.png')">48h予想図</button>
 <br>
 
 <!--
@@ -55,13 +56,13 @@ function tabClick(url) {
 <button onclick="tabClick('./latest/fwjp.png')">波浪予想図</button>
 <br>
 
-<button onclick="tabClick('./latest/kaisetsu_tanki.png')">短期予報</button>
-<button onclick="tabClick('./latest/kaisetsu_shukan.png')">週間予報</button>
+<button onclick="tabClick('./latest/kaisetsu_tanki.png')">短期予報解説</button>
+<button onclick="tabClick('./latest/kaisetsu_shukan.png')">週間予報解説</button>
 </div>
 <hr>
 
 <div class="tabBody">
-<img id="tabNode" src="./latest/ASAS.png" width=100% />
+<img id="tabNode" src="./latest/radar206.png" width=100% />
 </div>
 </body>
 <hr>

@@ -17,7 +17,7 @@ JMA_FILE = "./pub/news.sqlite3"	# SQLiteファイル名
 JMA_NEWS = "jma_news"	# SQLiteテーブル名
 JMA_DAYS = 7	# ニュース保持期間（日）
 JMA_HOUR = 2	# ニュース表示期間（時）
-JMA_MAX = 120	# ニュース表示件数
+JMA_MAX = 200	# ニュース表示件数
 JMA_HTML = "./pub/news.html"
 
 ## 高頻度フィード
