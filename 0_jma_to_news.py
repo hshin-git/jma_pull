@@ -17,7 +17,7 @@ JMA_FILE = "./pub/news.sqlite3"	# SQLiteファイル名
 JMA_NEWS = "jma_news"	# SQLiteテーブル名
 JMA_DAYS = 7	# ニュース保持期間（日）
 JMA_HOUR = 2	# ニュース表示期間（時）
-JMA_MAX = 100	# ニュース表示件数
+JMA_MAX = 120	# ニュース表示件数
 JMA_HTML = "./pub/news.html"
 
 ## 高頻度フィード
@@ -92,12 +92,13 @@ html = '''
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script> $(document).ready( function () { $('.dataframe').DataTable(); } ); </script>
+<script> $(document).ready( function () { $('.dataframe').DataTable({ "columnDefs":[{"orderable":false,"targets":[4,6]}], }); } ); </script>
 </head>
 <body>
 '''
 html += "<h2>気象庁防災情報XML [{0:%Y-%m-%d %H:%M}〜{1:%H:%M}]</h2>\n".format(NOW-timedelta(hours=JMA_HOUR), NOW)
 html += df.to_html(formatters=FORMATTERS,escape=False,index=True,border=0,classes="compact row-border stripe")
+html = html.replace("\\n","<br>")
 html += '''
 </body>
 </html>
