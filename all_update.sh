@@ -184,14 +184,19 @@ echo "##################################################"
 ## 防災情報XML電文
 $DEBUG $PYTHON 0_jma_to_news.py
 ## TXT/XMLファイル（気象通報、警報・注意報）
-for url in $XML_REGULAR $XML_EXTRA $XML_EQVOL; do
-  GET_URL $url
-done
+#for url in $XML_REGULAR $XML_EXTRA $XML_EQVOL; do
+#  GET_URL $url
+#done
 ## PNG/JPGファイル（衛星画像、レーダー画像）
 for url in $PNG_RADAR_KANTO $PNG_RADAR_JAPAN $PNG_THUNDER_JAPAN $PNG_GMS_IR $PNG_GMS_VS $PNG_GMS_WV; do
   GET_URL $url
 done
 ##### 1h毎 #####
+if [ $# -ge 1 ]; then
+  echo rapid update
+  echo "LEAVE:" $(date)
+  exit 0
+fi
 
 
 
@@ -238,4 +243,3 @@ fi
 echo "##################################################"
 echo "LEAVE:" $(date)
 exit 0
-
