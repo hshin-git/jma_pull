@@ -89,14 +89,16 @@ html = '''
 <head>
 <meta charset="utf-8">
 <title>JMA News</title>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+<link rel="icon" type="image/png" href="./favicon/icon-192x192.png"/>
+<link rel="apple-touch-icon" type="image/png" href="./favicon/apple-touch-icon-180x180.png"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script> $(document).ready( function () { $('.dataframe').DataTable({ "scrollX":true,"stateSave":true,"columnDefs":[{"orderable":false,"targets":[4,6]}], }); } ); </script>
 </head>
 <body>
 '''
-html += "<h2>気象庁防災情報XML [{0:%Y-%m-%d %H:%M}〜{1:%H:%M}]</h2>\n".format(NOW-timedelta(hours=JMA_HOUR), NOW)
+html += "<h2>防災情報XML [{0:%Y-%m-%d %H:%M}〜{1:%H:%M}]</h2>\n".format(NOW-timedelta(hours=JMA_HOUR), NOW)
 html += df.to_html(formatters=FORMATTERS,escape=False,index=True,border=0,classes="compact row-border stripe")
 html = html.replace("\\n","<br>")
 html += '''

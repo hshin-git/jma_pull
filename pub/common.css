@@ -20,11 +20,15 @@
 
 
 /***** index.html *****/
-body { text-align:center; height:100%; background:var(--text-bg); color:var(--text-fg); }
+body { 
+ text-align:center; height:100%;
+/*background:var(--text-bg); color:var(--text-fg);*/
+}
 h1 { font-size:medium; }
-hr { color:var(--button-bg); }
+hr { color:var(--text-fg); }
 button {
- border-style:none; font-weight:bold; width:100px; border-radius:8px;
- background-color:var(--button-bg); color:var(--button-fg);
+ font-weight:bold; width:100px;
+ border-style:none; border-radius:8px;
+/*background-color:var(--button-bg); color:var(--button-fg);*/
 }
 

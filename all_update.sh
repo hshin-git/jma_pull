@@ -181,6 +181,8 @@ function GET_URL() {
 
 echo "##################################################"
 ##### 1h毎 #####
+## 防災情報XML電文
+$DEBUG $PYTHON 0_jma_to_news.py
 ## TXT/XMLファイル（気象通報、警報・注意報）
 for url in $XML_REGULAR $XML_EXTRA $XML_EQVOL; do
   GET_URL $url
@@ -190,7 +192,7 @@ for url in $PNG_RADAR_KANTO $PNG_RADAR_JAPAN $PNG_THUNDER_JAPAN $PNG_GMS_IR $PNG
   GET_URL $url
 done
 ##### 1h毎 #####
-$DEBUG $PYTHON 0_jma_to_news.py
+
 
 
 echo "##################################################"
