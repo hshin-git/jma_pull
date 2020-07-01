@@ -88,6 +88,9 @@ html = '''
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
 <title>JMA News</title>
 <link rel="icon" type="image/png" href="./favicon/icon-192x192.png"/>
 <link rel="apple-touch-icon" type="image/png" href="./favicon/apple-touch-icon-180x180.png"/>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+
+<title>JHA Tide</title>
+
+<!--
+<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+-->
+<link rel="stylesheet" href="./common.css">
+
+<script>
+////////// SCRIPT BEGIN //////////
+const INIT = new Date();
+//const BASE = "https://www1.kaiho.mlit.go.jp/KANKYO/TIDE/cgi-bin/curr_img";
+const BASE = "http://www.mirc.jha.or.jp/online/w/w-tcp/img";
+//const CHART = ["東京湾","伊勢湾","大阪湾"];
+const CHART = ["kanmon","kurushima","naruto","akashi","osaka","ise","tokyo","tugaru"];
+const CHART_J = ["関門海峡","来島海峡","鳴門海峡","明石海峡","大阪湾","伊勢湾","東京湾","津軽海峡"];
+const DIGIT = function(n,w) { return ('0000'+n).slice(-w); };
+const DATE_TIME = function(h) {
+  const DT = new Date(INIT.getFullYear(),INIT.getMonth(),INIT.getDate(),INIT.getHours()+h);
+  return DIGIT(DT.getFullYear(),4) + DIGIT(DT.getMonth()+1,2) + DIGIT(DT.getDate(),2) + DIGIT(DT.getHours(),2);
+}
+var alt = 6;
+var seq = 0;
+function _lift(h) {
+  alt = (alt + h + CHART.length) % CHART.length;
+  url = BASE +"/"+ CHART[alt]  +"/"+ DATE_TIME(seq) + "00.png";
+  txt = CHART_J[alt] + (seq<0?"-":"+") + DIGIT(Math.abs(seq),3) +"h/"+ DATE_TIME(seq);
+  document.getElementById("chart").src = url;
+  document.getElementById("name").innerHTML = txt;
+  return false;
+};
+function _next(h) {
+  seq = seq + h;
+  url = BASE +"/"+ CHART[alt] +"/"+ DATE_TIME(seq) + "00.png";
+  txt = CHART_J[alt] + (seq<0?"-":"+") + DIGIT(Math.abs(seq),3) +"h/"+ DATE_TIME(seq);
+  document.getElementById("chart").src = url;
+  document.getElementById("name").innerHTML = txt;
+  return false;
+};
+////////// SCRIPT END //////////
+</script>
+
+
+</head>
+<body onload="_next(0);">
+
+<div id="chartHead">
+<button onclick="_lift(-1);" class="chartButton">西方</button>
+<button onclick="_next(-3);" class="chartButton">3h前</button>
+<button onclick="_next(3);" class="chartButton">3h後</button>
+<button onclick="_lift(1);" class="chartButton">東方</button>
+</div>
+
+<hr>
+
+<h1>
+<div id="name">東京湾+000h</div>
+</h1>
+
+<div id="chartBody">
+<img id="chart" src="" width="100%" height="auto" />
+</div>
+
+<hr>
+
+<div id="chartFoot">
+<button onclick="_lift(-1);" class="chartButton">西方</button>
+<button onclick="_next(-1);" class="chartButton">1h前</button>
+<button onclick="_next(1);" class="chartButton">1h後</button>
+<button onclick="_lift(1);" class="chartButton">東方</button>
+</div>
+
+</body>
+</html>
