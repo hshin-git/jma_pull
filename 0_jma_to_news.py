@@ -104,7 +104,7 @@ setTimeout( function() { location.reload(); }, 15*60*1000);
 </head>
 <body>
 '''
-html += "<h2>防災情報XML [{0:%Y-%m-%d %H:%M}〜{1:%H:%M}]</h2>\n".format(NOW-timedelta(hours=JMA_HOUR), NOW)
+html += "<h2>気象庁 ({0:%H:%M}〜{1:%H:%M})</h2>\n".format(NOW-timedelta(hours=JMA_HOUR), NOW)
 html += df.to_html(formatters=FORMATTERS,escape=False,index=True,border=0,classes="compact row-border stripe")
 html = html.replace("\\n","<br>")
 html += '''
