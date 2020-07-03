@@ -16,13 +16,12 @@
 <script type="text/javascript">
 ////////// SCRIPT BEGIN //////////
 const DIGIT = function (n,w) { return ("0000"+n).slice(-w); };
-function tabClick(url_) {
+function tabClick(url) {
   const e = document.getElementById("tabNode");
-  const NOW = new Date();
-  const DATE_TIME = NOW.getFullYear() + DIGIT(NOW.getMonth()+1,2) + DIGIT(NOW.getDate(),2) + DIGIT(NOW.getHours(),2) + DIGIT(Math.floor((NOW.getMinutes()-5)/10)*10,2);
-  const url = url_.replace("$DATE_TIME",DATE_TIME);
-  //alert(url);
-  if (e) { e.src = url; };
+  const NOW = new Date(Date.now() - 5*60*1000);
+  const DATE_TIME = NOW.getFullYear() + DIGIT(NOW.getMonth()+1,2) + DIGIT(NOW.getDate(),2) + DIGIT(NOW.getHours(),2) + DIGIT(Math.floor(NOW.getMinutes()/10)*10,2);
+  const url_ = url.replace("$DATE_TIME",DATE_TIME);
+  if (e) { e.src = url_; };
 };
 ////////// SCRIPT END //////////
 </script>
@@ -79,7 +78,7 @@ function tabClick(url_) {
 <hr>
 
 <!--
-<iframe src="./jma_news.html" width=100% height=300px></iframe>
+<iframe src="./news.html" width=100% height=300px></iframe>
 -->
 
 </html>

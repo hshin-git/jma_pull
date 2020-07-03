@@ -180,16 +180,6 @@ function GET_URL() {
 
 
 echo "##################################################"
-##### 1h毎 #####
-## PNG/JPGファイル（衛星画像、レーダー画像）
-#for url in $PNG_RADAR_KANTO $PNG_RADAR_JAPAN $PNG_THUNDER_JAPAN $PNG_GMS_IR $PNG_GMS_VS $PNG_GMS_WV; do
-#  GET_URL $url
-#done
-## TXT/XMLファイル（気象通報、警報・注意報）
-#for url in $XML_REGULAR $XML_EXTRA $XML_EQVOL; do
-#  GET_URL $url
-#done
-##### 1h毎 #####
 ## XMLファイル（防災情報）
 if [ $# -ge 1 ]; then
   $DEBUG $PYTHON 0_jma_to_news.py
@@ -197,6 +187,17 @@ if [ $# -ge 1 ]; then
   echo "LEAVE:" $(date)
   exit 0
 fi
+##### 1h毎 #####
+## PNG/JPGファイル（衛星画像、レーダー画像）
+#for url in $PNG_RADAR_KANTO $PNG_RADAR_JAPAN $PNG_THUNDER_JAPAN $PNG_GMS_IR $PNG_GMS_VS $PNG_GMS_WV; do
+for url in $PNG_RADAR_KANTO; do
+  GET_URL $url
+done
+## TXT/XMLファイル（気象通報、警報・注意報）
+#for url in $XML_REGULAR $XML_EXTRA $XML_EQVOL; do
+#  GET_URL $url
+#done
+##### 1h毎 #####
 
 
 echo "##################################################"
