@@ -74,7 +74,8 @@ for xml in XML_SUBSCRIBE:
 conn.commit()
 
 ## 直近ニュース作成
-sql = "select datetime(utc,'localtime') jst,author,title,content,feed,href from {0} where datetime(utc) >= datetime('now','-{1} hours') order by jst desc limit {2}".format(JMA_NEWS,JMA_HOUR,JMA_MAX)
+#sql = "select datetime(utc,'localtime') jst,author,title,content,feed,href from {0} where datetime(utc) >= datetime('now','-{1} hours') order by jst desc limit {2}".format(JMA_NEWS,JMA_HOUR,JMA_MAX)
+sql = "select datetime(utc,'localtime') jst,author,content from {0} where datetime(utc) >= datetime('now','-{1} hours') order by jst desc limit {2}".format(JMA_NEWS,JMA_HOUR,JMA_MAX)
 df = pd.read_sql_query(sql, conn)
 ##
 conn.close()
@@ -91,7 +92,7 @@ html = '''
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
-<title>JMA News</title>
+<title>JMA XML</title>
 <link rel="icon" type="image/png" href="./favicon/icon-192x192.png"/>
 <link rel="apple-touch-icon" type="image/png" href="./favicon/apple-touch-icon-180x180.png"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
@@ -104,7 +105,7 @@ setTimeout( function() { location.reload(); }, 15*60*1000);
 </head>
 <body>
 '''
-html += "<h2>気象庁 ({0:%H:%M}〜{1:%H:%M})</h2>\n".format(NOW-timedelta(hours=JMA_HOUR), NOW)
+#html += "<h2>気象庁 ({0:%H:%M}〜{1:%H:%M})</h2>\n".format(NOW-timedelta(hours=JMA_HOUR), NOW)
 html += df.to_html(formatters=FORMATTERS,escape=False,index=True,border=0,classes="compact row-border stripe")
 html = html.replace("\\n","<br>")
 html += '''

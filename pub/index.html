@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-<title>JMA Watch</title>
+<title>JMA News</title>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,14 +20,14 @@ function tabClick(url) {
   const e = document.getElementById("tabNode");
   const NOW = new Date(Date.now() - 5*60*1000);
   const DATE_TIME = NOW.getFullYear() + DIGIT(NOW.getMonth()+1,2) + DIGIT(NOW.getDate(),2) + DIGIT(NOW.getHours(),2) + DIGIT(Math.floor(NOW.getMinutes()/10)*10,2);
-  const url_ = url.replace("$DATE_TIME",DATE_TIME);
+  const url_ = url.replace("{DATE_TIME}",DATE_TIME);
   if (e) { e.src = url_; };
 };
 ////////// SCRIPT END //////////
 </script>
 </head>
 
-<body onload="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/206/$DATE_TIME-00.png')">
+<body onload="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/206/{DATE_TIME}-00.png')">
 <div id="tabArea">
 <!--
 <button onclick="tabClick('./latest/radar206.png')" autofocus>雨雲（関東）</button>
@@ -40,14 +40,14 @@ function tabClick(url) {
 <br>
 -->
 
-<button onclick="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/206/$DATE_TIME-00.png')" autofocus>雨雲（関東）</button>
-<button onclick="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/000/$DATE_TIME-00.png')">雨雲（全国）</button>
-<button onclick="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/thunder/000/$DATE_TIME-00.png')">雷雲（全国）</button>
+<button onclick="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/206/{DATE_TIME}-00.png')" autofocus>雨雲（関東）</button>
+<button onclick="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/000/{DATE_TIME}-00.png')">雨雲（全国）</button>
+<button onclick="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/thunder/000/{DATE_TIME}-00.png')">雷雲（全国）</button>
 <br>
 
-<button onclick="tabClick('https://www.jma.go.jp/jp/gms/imgs/0/infrared/1/$DATE_TIME-00.png')">赤外画像</button>
-<button onclick="tabClick('https://www.jma.go.jp/jp/gms/imgs/0/visible/1/$DATE_TIME-00.png')">可視画像</button>
-<button onclick="tabClick('https://www.jma.go.jp/jp/gms/imgs/0/watervapor/1/$DATE_TIME-00.png')">水蒸気画像</button>
+<button onclick="tabClick('https://www.jma.go.jp/jp/gms/imgs/0/infrared/1/{DATE_TIME}-00.png')">赤外画像</button>
+<button onclick="tabClick('https://www.jma.go.jp/jp/gms/imgs/0/visible/1/{DATE_TIME}-00.png')">可視画像</button>
+<button onclick="tabClick('https://www.jma.go.jp/jp/gms/imgs/0/watervapor/1/{DATE_TIME}-00.png')">水蒸気画像</button>
 <br>
 
 <!--
@@ -70,16 +70,12 @@ function tabClick(url) {
 </div>
 
 <hr>
-
 <div class="tabBody">
 <img id="tabNode" src="./latest/radar206.png" width=100% />
 </div>
-</body>
+
 <hr>
+<iframe src="./news.html" width=100% height=256px></iframe>
 
-<!--
-<iframe src="./news.html" width=100% height=300px></iframe>
--->
-
+</body>
 </html>
-
