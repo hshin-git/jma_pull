@@ -23,11 +23,15 @@ function tabClick(url) {
   const url_ = url.replace("{DATE_TIME}",DATE_TIME);
   if (e) { e.src = url_; };
 };
+function tabNews() {
+  const e = document.getElementById("tabNews");
+  if (e) { e.data = e.data + "?" + Date.now(); };
+};
 ////////// SCRIPT END //////////
 </script>
 </head>
 
-<body onload="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/206/{DATE_TIME}-00.png')">
+<body onload="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/206/{DATE_TIME}-00.png');tabNews();">
 <div id="tabArea">
 <!--
 <button onclick="tabClick('./latest/radar206.png')" autofocus>雨雲（関東）</button>
@@ -75,7 +79,7 @@ function tabClick(url) {
 </div>
 
 <hr>
-<iframe src="./news.html" width=100% height=256px></iframe>
+<object id="tabNews" data="./news.html" type="text/html" width=100% height=256px>news</object>
 
 </body>
 </html>
