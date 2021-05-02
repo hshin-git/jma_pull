@@ -99,7 +99,7 @@ html = '''
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
-$(document).ready( function () { $('.dataframe').DataTable({ "scrollX":false, "stateSave":true, }); } );
+$(document).ready( function () { $('.dataframe').DataTable({ "scrollX":false, "stateSave":true, "order":[[0,'desc'],], }); } );
 setTimeout( function() { location.reload(); }, 15*60*1000);
 </script>
 </head>
