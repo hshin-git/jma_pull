@@ -17,7 +17,6 @@
 ////////// SCRIPT BEGIN //////////
 const DIGIT = function (n,w) { return ("0000"+n).slice(-w); };
 function tabClick(url) {
-  return;
   const e = document.getElementById("tabNode");
   const NOW = new Date(Date.now() - 5*60*1000);
   const DATE_TIME = NOW.getFullYear() + DIGIT(NOW.getMonth()+1,2) + DIGIT(NOW.getDate(),2) + DIGIT(NOW.getHours(),2) + DIGIT(Math.floor(NOW.getMinutes()/10)*10,2);
@@ -33,7 +32,8 @@ function tabNews() {
 </script>
 </head>
 
-<body onload="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/206/{DATE_TIME}-00.png');tabNews();">
+<!-- <body onload="tabClick('https://www.jma.go.jp/jp/radnowc/imgs/radar/206/{DATE_TIME}-00.png');tabNews();"> -->
+<body>
 <div id="tabArea">
 <!--
 <button onclick="tabClick('./latest/radar206.png')" autofocus>雨雲（関東）</button>
