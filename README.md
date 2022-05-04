@@ -1,6 +1,6 @@
 # jma_pull
 
-![ASAS](https://tenki.cf/jma/latest/ASAS.png)
+![ASAS](https://tenki.cf/jma/latest/ASAS.png?latest)
 
 
 ## 概説
