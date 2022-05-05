@@ -1,4 +1,4 @@
-# jma_pull
+# jma_news
 
 ![ASAS](https://tenki.cf/jma/latest/ASAS.png?latest)
 
