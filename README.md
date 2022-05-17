@@ -1,6 +1,6 @@
 # jma_news
 
-![ASAS](https://tenki.cf/jma/latest/ASAS.png?latest)
+![ASAS](https://52.193.72.209/jma/latest/ASAS.png?latest)
 
 
 ## 概説
