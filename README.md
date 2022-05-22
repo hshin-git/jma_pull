@@ -12,4 +12,4 @@
 - [アジア太平洋域 実況天気図の説明](https://www.jma.go.jp/jma/kishou/know/kurashi/ASAS_kaisetu.html)
 - [気象の専門家向け資料集](https://www.jma.go.jp/jma/kishou/know/expert/index.html)
 - [気象庁防災情報XMLフォーマット](https://xml.kishou.go.jp/)
-- [JMA News](https://tenki.cf/jma/)
+- [JMA News](http://52.193.72.209/jma/)
